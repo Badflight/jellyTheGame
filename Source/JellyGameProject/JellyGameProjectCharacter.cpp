@@ -41,12 +41,12 @@ AJellyGameProjectCharacter::AJellyGameProjectCharacter()
 	CameraBoom->SetupAttachment(RootComponent);
 	//CameraBoom->SetUsingAbsoluteRotation(true);
 	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
-	//CameraBoom->SetRelativeRotation(FRotator(160.0f, 110.0f, 80.0f));
+	//CameraBoom->SetRelativeRotation(FRotator(-160.0f, 0.0f, 0.0f));
 	CameraBoom->bUsePawnControlRotation = false; // Rotate the arm based on the controller
 
 	CameraBoom->bEnableCameraLag = true;
-	CameraBoom->bEnableCameraRotationLag = true;
-	CameraBoom->CameraLagSpeed = 200.0f;
+	CameraBoom->bEnableCameraRotationLag = false;
+	CameraBoom->CameraLagSpeed = 6.0f;
 
 	// Create a follow camera
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));

@@ -13,5 +13,7 @@ UCLASS()
 class JELLYGAMEPROJECT_API AMyCameraActor : public ACameraActor
 {
 	GENERATED_BODY()
-	
+public:
+	UFUNCTION()
+		void FindPlayerLocation();
 };

@@ -3,3 +3,7 @@
 
 #include "MyCameraActor.h"
 
+void AMyCameraActor::FindPlayerLocation()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Function Called"));
+}

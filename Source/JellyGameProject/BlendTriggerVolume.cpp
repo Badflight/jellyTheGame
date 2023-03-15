@@ -15,6 +15,8 @@ ABlendTriggerVolume::ABlendTriggerVolume()
 	OverlapVolume = CreateDefaultSubobject<UBoxComponent>(TEXT("CameraProxVolume"));
 	OverlapVolume->SetupAttachment(RootComponent);
 
+	CameraToFind = CreateDefaultSubobject<ACameraActor>(TEXT("Camera to find"));
+
 	CameraBlendTime = 0.0f;
 }
 
@@ -22,7 +24,7 @@ ABlendTriggerVolume::ABlendTriggerVolume()
 void ABlendTriggerVolume::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	SetActorHiddenInGame(false);
 }
 
 
@@ -39,10 +41,12 @@ void ABlendTriggerVolume::NotifyActorBeginOverlap(AActor* OtherActor)
 	{
 		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
 		{
-			TArray<AActor*> FoundActors;
-			//UGameplayStatics::GetAllActorsOfClass(GetWorld(), CameraToFind, FoundActors);
+			//Only works with one camera actor
+			/*TArray<AActor*> FoundActors;
+			UGameplayStatics::GetAllActorsOfClass(GetWorld(), CameraToFind, FoundActors);
+			PlayerCharacterController->SetViewTargetWithBlend(FoundActors[0], CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);*/
 
-			PlayerCharacterController->SetViewTargetWithBlend(FoundActors[0], CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
+			PlayerCharacterController->SetViewTargetWithBlend(CameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
 		};
 	};
 }
