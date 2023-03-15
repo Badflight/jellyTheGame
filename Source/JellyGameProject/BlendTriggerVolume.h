@@ -25,10 +25,10 @@ protected:
 	/*UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TSubclassOf<ACameraActor> CameraToFind;*/
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		class ACameraActor* CameraToFind;
+	/*UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera Options")
+		class ACameraActor* CameraToFind;*/
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Camera Options")
 		AMyCameraActor* CustomCameraToFind;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
