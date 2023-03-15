@@ -17,6 +17,8 @@ ABlendTriggerVolume::ABlendTriggerVolume()
 
 	CameraToFind = CreateDefaultSubobject<ACameraActor>(TEXT("Camera to find"));
 
+	CustomCameraToFind = CreateDefaultSubobject<AMyCameraActor>(TEXT("TEST CAMERA TO FIND"));
+
 	CameraBlendTime = 0.0f;
 }
 
