@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "PaperSpriteComponent.h"
+#include "PaperFlipbookComponent.h"
 #include "JellyGameProjectCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -25,6 +27,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2D Character")
+		UPaperSpriteComponent*PlayerSprite;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
+		UPaperFlipbookComponent* PlayerSpriteFlipBook;
+
+		
 protected:
 
 	/** Called for forwards/backward input */
@@ -51,12 +59,29 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
+	UFUNCTION(BlueprintCallable)
+		void UpdateAnimation();
+
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
+		UPaperFlipbook* PlayerIdleAnimation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
+		UPaperFlipbook* PlayerAttackAnimation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
+		UPaperFlipbook* PlayerRunAnimation;
+
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
 
 public:
+	virtual void Tick(float DeltaTime) override;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class USpringArmComponent* CameraBoom;
 

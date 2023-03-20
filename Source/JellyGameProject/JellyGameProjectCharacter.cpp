@@ -6,6 +6,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
+#include "UObject/ConstructorHelpers.h"
 #include "GameFramework/SpringArmComponent.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -55,6 +56,12 @@ AJellyGameProjectCharacter::AJellyGameProjectCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+	PlayerSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Player Sprite"));
+	PlayerSprite->SetupAttachment(RootComponent);
+
+	PlayerSpriteFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Player Flipbook"));
+	PlayerSpriteFlipBook->SetupAttachment(RootComponent);
+	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -83,6 +90,22 @@ void AJellyGameProjectCharacter::SetupPlayerInputComponent(class UInputComponent
 	PlayerInputComponent->BindTouch(IE_Released, this, &AJellyGameProjectCharacter::TouchStopped);
 }
 
+void AJellyGameProjectCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	FVector PlayerVelocity = this->GetVelocity();
+
+
+	/*if (PlayerVelocity.X != 0.0f) {
+		PlayerSpriteFlipBook->SetFlipbook(PlayerRunAnimation);
+	}
+	else {
+		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
+	}*/
+	UpdateAnimation();
+}
+
 void AJellyGameProjectCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	Jump();
@@ -91,6 +114,11 @@ void AJellyGameProjectCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVe
 void AJellyGameProjectCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	StopJumping();
+}
+
+void AJellyGameProjectCharacter::UpdateAnimation()
+{
+	
 }
 
 void AJellyGameProjectCharacter::TurnAtRate(float Rate)
@@ -116,8 +144,14 @@ void AJellyGameProjectCharacter::MoveForward(float Value)
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
-
+		//PlayerSpriteFlipBook->SetFlipbook();
+		/*static ConstructorHelpers::FObjectFinder<UPaperFlipbook>RunAnimation(TEXT("D:/Unreal Engine Projects/jellyTheGame/Content/AnimationTest/Run/Run.uasset"));
+		PlayerSpriteFlipBook->SetFlipbook(RunAnimation.Object);*/
+		//PlayerSpriteFlipBook->SetFlipbook(PlayerRunAnimation);
 	}
+	/*if (Value == 0.0f) {
+		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
+	}*/
 }
 
 void AJellyGameProjectCharacter::MoveRight(float Value)
@@ -132,6 +166,16 @@ void AJellyGameProjectCharacter::MoveRight(float Value)
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
+		if (Value > 0.0f) {
+			UE_LOG(LogTemp, Warning, TEXT("Right"));
+			const FQuat newRotation(0, 0, 0, 0);
+			SetActorRotation(newRotation);
+		}
+		else if (Value < 0.0f) {
+			UE_LOG(LogTemp, Warning, TEXT("Left"));
+			const FQuat newRotation(0, 0, 180, 0);
+			SetActorRelativeRotation(newRotation);
+		}
 		
 	
 	}
