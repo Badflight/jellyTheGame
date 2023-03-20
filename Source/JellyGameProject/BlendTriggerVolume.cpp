@@ -61,6 +61,7 @@ void ABlendTriggerVolume::NotifyActorEndOverlap(AActor* OtherActor)
 		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
 		{
 			PlayerCharacterController->SetViewTargetWithBlend(PlayerCharacterController->GetPawn(), CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
+			//comment test
 		}
 	}
 }
