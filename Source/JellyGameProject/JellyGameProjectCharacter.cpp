@@ -94,7 +94,6 @@ void AJellyGameProjectCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FVector PlayerVelocity = this->GetVelocity();
 
 
 	/*if (PlayerVelocity.X != 0.0f) {
@@ -118,6 +117,14 @@ void AJellyGameProjectCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVe
 
 void AJellyGameProjectCharacter::UpdateAnimation()
 {
+	FVector playerVelocity = GetCharacterMovement()->Velocity;
+	float speed = playerVelocity.Length();
+	if (speed > 5.0f) {
+		PlayerSpriteFlipBook->SetFlipbook(PlayerRunAnimation);
+	}
+	else if (speed < 5.0f) {
+		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
+	}
 	
 }
 
@@ -167,12 +174,10 @@ void AJellyGameProjectCharacter::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 		if (Value > 0.0f) {
-			UE_LOG(LogTemp, Warning, TEXT("Right"));
 			const FQuat newRotation(0, 0, 0, 0);
 			SetActorRotation(newRotation);
 		}
 		else if (Value < 0.0f) {
-			UE_LOG(LogTemp, Warning, TEXT("Left"));
 			const FQuat newRotation(0, 0, 180, 0);
 			SetActorRelativeRotation(newRotation);
 		}
