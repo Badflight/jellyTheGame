@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include"MyCameraActor.h"
+#include "MyCameraActor.h"
 #include "BlendTriggerVolume.generated.h"
 
 UCLASS()
@@ -25,8 +25,11 @@ protected:
 	/*UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TSubclassOf<ACameraActor> CameraToFind;*/
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		class ACameraActor* CameraToFind;
+	/*UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera Options")
+		class ACameraActor* CameraToFind;*/
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Camera Options")
+		AMyCameraActor* CustomCameraToFind;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float CameraBlendTime;
