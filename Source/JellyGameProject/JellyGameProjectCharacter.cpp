@@ -62,6 +62,7 @@ AJellyGameProjectCharacter::AJellyGameProjectCharacter()
 	PlayerSpriteFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Player Flipbook"));
 	PlayerSpriteFlipBook->SetupAttachment(RootComponent);
 	
+	isJumping = false;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -94,37 +95,44 @@ void AJellyGameProjectCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-
-
-	/*if (PlayerVelocity.X != 0.0f) {
-		PlayerSpriteFlipBook->SetFlipbook(PlayerRunAnimation);
-	}
-	else {
-		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
-	}*/
 	UpdateAnimation();
 }
 
 void AJellyGameProjectCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	Jump();
+	isJumping = true;
+	
+	
+	
 }
 
 void AJellyGameProjectCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 	StopJumping();
+	isJumping = false;
 }
 
 void AJellyGameProjectCharacter::UpdateAnimation()
 {
+	FVector playerSpeed = GetCharacterMovement()->GetCurrentAcceleration();
 	FVector playerVelocity = GetCharacterMovement()->Velocity;
-	float speed = playerVelocity.Length();
-	if (speed > 5.0f) {
+	float playerZ = playerVelocity.Z;
+	bool isFalling = GetCharacterMovement()->IsFalling();
+	float speed = playerSpeed.Length();
+	if (speed > 3.0f) {
 		PlayerSpriteFlipBook->SetFlipbook(PlayerRunAnimation);
 	}
-	else if (speed < 5.0f) {
+	else if (speed < 3.0f) {
 		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
 	}
+	/*if (playerVelocity.Z>0.0f) {
+		UE_LOG(LogTemp, Warning, TEXT("CurrentJump %f"),playerZ)
+		PlayerSpriteFlipBook->SetFlipbook(PlayerJumpAnimation);
+	}
+	else if (isFalling == false) {
+		UE_LOG(LogTemp, Warning, TEXT("On ground"))
+	}*/
 	
 }
 

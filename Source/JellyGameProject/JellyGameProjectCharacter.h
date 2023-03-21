@@ -62,6 +62,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 		void UpdateAnimation();
 
+	bool isJumping;
+
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
@@ -72,6 +74,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
 		UPaperFlipbook* PlayerRunAnimation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
+		UPaperFlipbook* PlayerJumpAnimation;
 
 
 protected:
