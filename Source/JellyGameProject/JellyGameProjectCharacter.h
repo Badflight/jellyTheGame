@@ -27,8 +27,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2D Character")
-		UPaperSpriteComponent*PlayerSprite;
+	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
 		UPaperFlipbookComponent* PlayerSpriteFlipBook;
 

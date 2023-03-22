@@ -56,8 +56,6 @@ AJellyGameProjectCharacter::AJellyGameProjectCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
-	PlayerSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Player Sprite"));
-	PlayerSprite->SetupAttachment(RootComponent);
 
 	PlayerSpriteFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Player Flipbook"));
 	PlayerSpriteFlipBook->SetupAttachment(RootComponent);
@@ -120,19 +118,17 @@ void AJellyGameProjectCharacter::UpdateAnimation()
 	float playerZ = playerVelocity.Z;
 	bool isFalling = GetCharacterMovement()->IsFalling();
 	float speed = playerSpeed.Length();
+	//will change the flip book to the run animation if the speed changes
 	if (speed > 3.0f) {
 		PlayerSpriteFlipBook->SetFlipbook(PlayerRunAnimation);
 	}
 	else if (speed < 3.0f) {
 		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
 	}
-	/*if (playerVelocity.Z>0.0f) {
-		UE_LOG(LogTemp, Warning, TEXT("CurrentJump %f"),playerZ)
+	if (isFalling) {
+		UE_LOG(LogTemp, Warning, TEXT("Jumping"));
 		PlayerSpriteFlipBook->SetFlipbook(PlayerJumpAnimation);
 	}
-	else if (isFalling == false) {
-		UE_LOG(LogTemp, Warning, TEXT("On ground"))
-	}*/
 	
 }
 
@@ -159,14 +155,7 @@ void AJellyGameProjectCharacter::MoveForward(float Value)
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
-		//PlayerSpriteFlipBook->SetFlipbook();
-		/*static ConstructorHelpers::FObjectFinder<UPaperFlipbook>RunAnimation(TEXT("D:/Unreal Engine Projects/jellyTheGame/Content/AnimationTest/Run/Run.uasset"));
-		PlayerSpriteFlipBook->SetFlipbook(RunAnimation.Object);*/
-		//PlayerSpriteFlipBook->SetFlipbook(PlayerRunAnimation);
 	}
-	/*if (Value == 0.0f) {
-		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
-	}*/
 }
 
 void AJellyGameProjectCharacter::MoveRight(float Value)
