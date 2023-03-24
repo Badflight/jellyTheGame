@@ -27,8 +27,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2D Character")
-		UPaperSpriteComponent*PlayerSprite;
+	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
 		UPaperFlipbookComponent* PlayerSpriteFlipBook;
 
@@ -62,6 +62,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 		void UpdateAnimation();
 
+	bool isJumping;
+
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
@@ -72,6 +74,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
 		UPaperFlipbook* PlayerRunAnimation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
+		UPaperFlipbook* PlayerJumpAnimation;
 
 
 protected:
