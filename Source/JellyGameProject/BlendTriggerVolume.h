@@ -31,7 +31,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Camera Options")
 		AMyCameraActor* CustomCameraToFind;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera Options")
 		float CameraBlendTime;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor);

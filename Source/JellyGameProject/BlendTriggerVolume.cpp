@@ -43,13 +43,15 @@ void ABlendTriggerVolume::NotifyActorBeginOverlap(AActor* OtherActor)
 	{
 		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
 		{
+			PlayerCharacterController->SetViewTargetWithBlend(CustomCameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
+
 			//Only works with one camera actor
 			/*TArray<AActor*> FoundActors;
 			UGameplayStatics::GetAllActorsOfClass(GetWorld(), CameraToFind, FoundActors);
 			PlayerCharacterController->SetViewTargetWithBlend(FoundActors[0], CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);*/
 
 			//PlayerCharacterController->SetViewTargetWithBlend(CameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
-			PlayerCharacterController->SetViewTargetWithBlend(CustomCameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
+			
 		};
 	};
 }
