@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "PaperSpriteComponent.h"
 #include "PaperFlipbookComponent.h"
+#include "ProjectileBase.h"
 #include "JellyGameProjectCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -61,6 +62,10 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 		void UpdateAnimation();
+	UFUNCTION()
+		void Shoot();
+	UFUNCTION()
+		void StopShoot();
 
 	bool isJumping;
 
@@ -76,6 +81,8 @@ protected:
 		UPaperFlipbook* PlayerRunAnimation;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "2D Character")
 		UPaperFlipbook* PlayerJumpAnimation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
+		TSubclassOf<AProjectileBase> ProjectileClass;
 
 
 protected:
