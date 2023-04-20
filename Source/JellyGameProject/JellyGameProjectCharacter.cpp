@@ -73,6 +73,9 @@ void AJellyGameProjectCharacter::SetupPlayerInputComponent(class UInputComponent
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AJellyGameProjectCharacter::Shoot);
+	PlayerInputComponent->BindAction("Shoot", IE_Released, this, &AJellyGameProjectCharacter::StopShoot);
+
 	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &AJellyGameProjectCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("Move Right / Left", this, &AJellyGameProjectCharacter::MoveRight);
 
@@ -98,8 +101,7 @@ void AJellyGameProjectCharacter::Tick(float DeltaTime)
 
 void AJellyGameProjectCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {
-	Jump();
-	isJumping = true;
+	
 	
 	
 	
@@ -107,8 +109,7 @@ void AJellyGameProjectCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVe
 
 void AJellyGameProjectCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
-	StopJumping();
-	isJumping = false;
+
 }
 
 void AJellyGameProjectCharacter::UpdateAnimation()
@@ -126,10 +127,29 @@ void AJellyGameProjectCharacter::UpdateAnimation()
 		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
 	}
 	if (isFalling) {
-		UE_LOG(LogTemp, Warning, TEXT("Jumping"));
+		//UE_LOG(LogTemp, Warning, TEXT("Jumping"));
 		PlayerSpriteFlipBook->SetFlipbook(PlayerJumpAnimation);
 	}
 	
+}
+
+void AJellyGameProjectCharacter::Shoot()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Shooting"));
+	FRotator currentRotation = GetActorRotation();
+	FVector currentLocation = GetActorLocation();
+	UE_LOG(LogTemp, Warning, TEXT("Current Rotation %s"), *currentRotation.ToString());
+	UE_LOG(LogTemp, Warning, TEXT("Current Location %s"), *currentLocation.ToString());
+	if (ProjectileClass)
+	{
+		GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, currentLocation, currentRotation);
+	}
+	
+}
+
+void AJellyGameProjectCharacter::StopShoot()
+{
+	UE_LOG(LogTemp, Warning, TEXT("NotShooting"));
 }
 
 void AJellyGameProjectCharacter::TurnAtRate(float Rate)
@@ -172,7 +192,7 @@ void AJellyGameProjectCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 		if (Value > 0.0f) {
 			const FQuat newRotation(0, 0, 0, 0);
-			SetActorRotation(newRotation);
+			SetActorRelativeRotation(newRotation);
 		}
 		else if (Value < 0.0f) {
 			const FQuat newRotation(0, 0, 180, 0);
