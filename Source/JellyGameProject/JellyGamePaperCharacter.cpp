@@ -42,11 +42,14 @@ void AJellyGamePaperCharacter::SetupPlayerInputComponent(UInputComponent* Player
 {
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAxis("Move Right / Left", this, &AJellyGamePaperCharacter::MoveRight);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed,this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 }
 
 void AJellyGamePaperCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	UpdateAnimation();
 }
 
 void AJellyGamePaperCharacter::MoveRight(float Value)
@@ -65,13 +68,28 @@ void AJellyGamePaperCharacter::MoveRight(float Value)
 		else if (Value < 0.0f) {
 			const FQuat newRotation(0, 0, 180, 0);
 			SetActorRelativeRotation(newRotation);
+			//control rotation has been set to false and camera boon rotation has been set to true
 		}
 	}
 }
 
 void AJellyGamePaperCharacter::UpdateAnimation()
 {
-
+	FVector playerSpeed = GetCharacterMovement()->GetCurrentAcceleration();
+	FVector playerVelocity = GetCharacterMovement()->Velocity;
+	float playerZ = playerVelocity.Z;
+	bool isFalling = GetCharacterMovement()->IsFalling();
+	float speed = playerSpeed.Length();
+	//will change the flip book to the run animation if the speed changes
+	if (speed > 3.0f) {
+		GetSprite()->SetFlipbook(RunAnimation);
+	}
+	else if (speed < 3.0f) {
+		GetSprite()->SetFlipbook(IdleAnimation);
+	}
+	if (isFalling) {
+		GetSprite()->SetFlipbook(JumpAnimation);
+	}
 }
 
 

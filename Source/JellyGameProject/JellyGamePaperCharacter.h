@@ -25,9 +25,15 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 		void UpdateAnimation();
-
+	//Setting the animation
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
 		UPaperFlipbook* IdleAnimation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
+		UPaperFlipbook* RunAnimation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
+		UPaperFlipbook* JumpAnimation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
+		UPaperFlipbook* AttackAnimation;
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
