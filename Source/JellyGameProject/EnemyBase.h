@@ -5,23 +5,23 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Components/CapsuleComponent.h"
-#include "SaltKing.generated.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "EnemyBase.generated.h"
 
 UCLASS()
-class JELLYGAMEPROJECT_API ASaltKing : public APawn
+class JELLYGAMEPROJECT_API AEnemyBase : public APawn
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
-	ASaltKing();
-
+	AEnemyBase();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		class UBehaviorTree* TreeAsset;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		USkeletalMeshComponent* SkeletalMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCapsuleComponent* CapsuleComponet;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		class UBehaviorTree* TreeAsset;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
