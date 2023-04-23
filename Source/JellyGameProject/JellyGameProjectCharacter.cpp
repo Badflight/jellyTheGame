@@ -40,7 +40,8 @@ AJellyGameProjectCharacter::AJellyGameProjectCharacter()
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
-	//CameraBoom->SetUsingAbsoluteRotation(true);
+	CameraBoom->SetUsingAbsoluteRotation(true);
+	//CameraBoom->SetWorldRotation(FQuat(0, 200, 0, 0));
 	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
 	//CameraBoom->SetRelativeRotation(FRotator(-160.0f, 0.0f, 0.0f));
 	CameraBoom->bUsePawnControlRotation = false; // Rotate the arm based on the controller
