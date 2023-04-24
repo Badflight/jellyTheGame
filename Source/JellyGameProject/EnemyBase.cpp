@@ -8,10 +8,15 @@ AEnemyBase::AEnemyBase()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	//SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
+
+
+	CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsual collider"));
+	RootComponent = CapsuleComponent;
+
 
 	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static mesh"));
-	CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsual collider"));
+	StaticMeshComp->SetupAttachment(RootComponent);
+	
 }
 
 // Called when the game starts or when spawned
@@ -26,6 +31,11 @@ void AEnemyBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AEnemyBase::Shoot()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Enemy base function called"))
 }
 
 // Called to bind functionality to input

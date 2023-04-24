@@ -26,11 +26,6 @@ AProjectileBase::AProjectileBase()
 	
 }
 
-void AProjectileBase::FireInDirection(const FVector& Direction)
-{
-	UE_LOG(LogTemp, Warning, TEXT("Fire Function called"));
-	//ProjectileMovement->Velocity = Direction*1000;
-}
 
 // Called when the game starts or when spawned
 void AProjectileBase::BeginPlay()
@@ -45,4 +40,11 @@ void AProjectileBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
+void AProjectileBase::FireInDirection(const FVector& Direction)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fire in direction function called"));
+	//ProjectileMovement->Velocity = Direction*1000;
+}
+
 

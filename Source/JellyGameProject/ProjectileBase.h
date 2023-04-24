@@ -28,8 +28,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UProjectileMovementComponent* ProjectileMovement;
 
-	UFUNCTION()
-		void FireInDirection(const FVector& Direction);
+	
 
 protected:
 	// Called when the game starts or when spawned
@@ -38,5 +37,8 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable)
+		void FireInDirection(const FVector& Direction);
 
 };
