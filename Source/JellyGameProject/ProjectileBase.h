@@ -22,14 +22,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		USphereComponent* SphereCollider;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UStaticMeshComponent* StaticMeshComponent;
+		UStaticMeshComponent* StaticMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UPaperFlipbookComponent* ProjectileSprite;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UProjectileMovementComponent* ProjectileMovement;
 
-	//UFUNCTION(BlueprintCallable)
-	//	void FireInDirection(const FVector Direction);
+	UFUNCTION()
+		void FireInDirection(const FVector& Direction);
 
 protected:
 	// Called when the game starts or when spawned

@@ -10,24 +10,33 @@ AProjectileBase::AProjectileBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Collider"));
-	//RootComponent = SphereCollider;
+	RootComponent = SphereCollider;
 
-	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
-	//StaticMeshComponent->SetupAttachment(SphereCollider);
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh"));
+	StaticMesh->SetupAttachment(RootComponent);
+
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovement->SetUpdatedComponent(SphereCollider);
-	ProjectileMovement->InitialSpeed = 3000.0f;
+	ProjectileMovement->InitialSpeed = 300.0f;
 	ProjectileMovement->MaxSpeed = 3000.0f;
-	ProjectileMovement->ProjectileGravityScale = 0.0f;
+	ProjectileMovement->bShouldBounce = true;
+	ProjectileMovement->ProjectileGravityScale = 1.7f;
 	
+	
+}
+
+void AProjectileBase::FireInDirection(const FVector& Direction)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Fire Function called"));
+	//ProjectileMovement->Velocity = Direction*1000;
 }
 
 // Called when the game starts or when spawned
 void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	//FireInDirection(FVector(50, 50, 50));
 }
 
 // Called every frame
