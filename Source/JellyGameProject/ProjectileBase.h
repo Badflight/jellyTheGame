@@ -4,6 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "PaperSpriteComponent.h"
+#include "PaperFlipbookComponent.h"
+#include "Components/SphereComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "ProjectileBase.generated.h"
 
 UCLASS()
@@ -20,8 +24,11 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USphereComponent* SphereCollider;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* StaticMeshComponent;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UPaperFlipbookComponent* ProjectileSprite;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
