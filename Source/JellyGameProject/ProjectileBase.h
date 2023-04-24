@@ -19,16 +19,22 @@ class JELLYGAMEPROJECT_API AProjectileBase : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AProjectileBase();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		USphereComponent* SphereCollider;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* StaticMeshComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UPaperFlipbookComponent* ProjectileSprite;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UProjectileMovementComponent* ProjectileMovement;
+
+	//UFUNCTION(BlueprintCallable)
+	//	void FireInDirection(const FVector Direction);
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
