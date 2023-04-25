@@ -4,6 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "PaperSpriteComponent.h"
+#include "PaperFlipbookComponent.h"
+#include "Components/SphereComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "ProjectileBase.generated.h"
 
 UCLASS()
@@ -15,15 +19,26 @@ class JELLYGAMEPROJECT_API AProjectileBase : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AProjectileBase();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USphereComponent* SphereCollider;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMeshComponent* StaticMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UPaperFlipbookComponent* ProjectileSprite;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UProjectileMovementComponent* ProjectileMovement;
+
+	
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UStaticMeshComponent* StaticMeshComponent;
-
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable)
+		void FireInDirection(const FVector& Direction);
 
 };

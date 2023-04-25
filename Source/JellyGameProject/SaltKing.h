@@ -20,7 +20,8 @@ public:
 		USkeletalMeshComponent* SkeletalMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCapsuleComponent* CapsuleComponet;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		class UBehaviorTree* TreeAsset;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

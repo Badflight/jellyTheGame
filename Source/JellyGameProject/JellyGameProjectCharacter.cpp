@@ -127,7 +127,6 @@ void AJellyGameProjectCharacter::UpdateAnimation()
 		PlayerSpriteFlipBook->SetFlipbook(PlayerIdleAnimation);
 	}
 	if (isFalling) {
-		//UE_LOG(LogTemp, Warning, TEXT("Jumping"));
 		PlayerSpriteFlipBook->SetFlipbook(PlayerJumpAnimation);
 	}
 	
