@@ -6,6 +6,9 @@
 #include "GameFramework/Pawn.h"
 #include "Components/CapsuleComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "GameFramework/FloatingPawnMovement.h"
+#include "CustomPawnMovementSystem.h"
+#include "Perception/PawnSensingComponent.h"
 #include "EnemyBase.generated.h"
 
 UCLASS()
@@ -22,6 +25,10 @@ public:
 		UStaticMeshComponent* StaticMeshComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCapsuleComponent* CapsuleComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UCustomPawnMovementSystem* PawnMovementComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UPawnSensingComponent* PawnSensorComp;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

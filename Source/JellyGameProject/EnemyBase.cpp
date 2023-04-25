@@ -17,6 +17,11 @@ AEnemyBase::AEnemyBase()
 	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static mesh"));
 	StaticMeshComp->SetupAttachment(RootComponent);
 	
+	PawnMovementComp = CreateDefaultSubobject<UCustomPawnMovementSystem>(TEXT("Pawn Movement"));
+	PawnMovementComp->UpdatedComponent;
+	PawnMovementComp->MaxSpeed = 800.0f;
+
+	PawnSensorComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("Pawn Sensing Component"));
 }
 
 // Called when the game starts or when spawned
