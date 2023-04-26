@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "JellyGamePaperCharacter.h"
 #include "EnemyBase.h"
 
 // Sets default values
@@ -23,7 +22,6 @@ AEnemyBase::AEnemyBase()
 	PawnMovementComp->MaxSpeed = 800.0f;
 
 	PawnSensorComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("Pawn Sensing Component"));
-	PawnSensorComp->bSeePawns = true;
 }
 
 // Called when the game starts or when spawned
@@ -37,7 +35,6 @@ void AEnemyBase::BeginPlay()
 void AEnemyBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
 
 }
 
