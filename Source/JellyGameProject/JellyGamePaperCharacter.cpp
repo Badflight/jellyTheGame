@@ -36,6 +36,7 @@ AJellyGamePaperCharacter::AJellyGamePaperCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	Health = 10;
 }
 
 void AJellyGamePaperCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -52,6 +53,11 @@ void AJellyGamePaperCharacter::Tick(float DeltaTime)
 	UpdateAnimation();
 }
 
+void AJellyGamePaperCharacter::DamageRecived(float DamagePoint)
+{
+
+}
+
 void AJellyGamePaperCharacter::MoveRight(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f))
@@ -64,10 +70,13 @@ void AJellyGamePaperCharacter::MoveRight(float Value)
 		if (Value > 0.0f) {
 			const FQuat newRotation(0, 0, 0, 0);
 			SetActorRelativeRotation(newRotation);
+			//GetSprite()->SetRelativeRotation(newRotation);
 		}
 		else if (Value < 0.0f) {
-			const FQuat newRotation(0, 0, 180, 0);
+			const FQuat newRotation(0, 0, 270, 0);
 			SetActorRelativeRotation(newRotation);
+			
+			//GetSprite()->SetRelativeRotation(newRotation);
 			//control rotation has been set to false and camera boon rotation has been set to true
 		}
 	}

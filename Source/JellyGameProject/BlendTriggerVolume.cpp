@@ -4,6 +4,7 @@
 #include "BlendTriggerVolume.h"
 #include "Components/BoxComponent.h"
 #include "JellyGameProjectCharacter.h"
+#include "JellyGamePaperCharacter.h"
 #include "Camera/CameraActor.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
@@ -39,7 +40,7 @@ void ABlendTriggerVolume::Tick(float DeltaTime)
 }
 void ABlendTriggerVolume::NotifyActorBeginOverlap(AActor* OtherActor)
 {
-	if (AJellyGameProjectCharacter* PlayerCheck = Cast<AJellyGameProjectCharacter>(OtherActor))
+	if (AJellyGamePaperCharacter* PlayerCheck = Cast<AJellyGamePaperCharacter>(OtherActor))
 	{
 		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
 		{
@@ -58,7 +59,7 @@ void ABlendTriggerVolume::NotifyActorBeginOverlap(AActor* OtherActor)
 
 void ABlendTriggerVolume::NotifyActorEndOverlap(AActor* OtherActor)
 {
-	if (AJellyGameProjectCharacter* PlayerCheck = Cast<AJellyGameProjectCharacter>(OtherActor))
+	if (AJellyGamePaperCharacter* PlayerCheck = Cast<AJellyGamePaperCharacter>(OtherActor))
 	{
 		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
 		{
