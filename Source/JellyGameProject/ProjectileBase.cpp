@@ -18,9 +18,10 @@ AProjectileBase::AProjectileBase()
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovement->SetUpdatedComponent(SphereCollider);
-	ProjectileMovement->InitialSpeed = 3000.0f;
-	ProjectileMovement->MaxSpeed = 3000.0f;
+	ProjectileMovement->InitialSpeed = 500.0f;
+	ProjectileMovement->MaxSpeed = 500.0f;
 	ProjectileMovement->bShouldBounce = false;
+	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->ProjectileGravityScale = 0.0f;
 	
 	
@@ -31,6 +32,7 @@ AProjectileBase::AProjectileBase()
 void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
+
 	//FireInDirection(FVector(50, 50, 50));
 }
 
