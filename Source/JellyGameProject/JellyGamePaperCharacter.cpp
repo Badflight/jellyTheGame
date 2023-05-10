@@ -16,7 +16,7 @@ AJellyGamePaperCharacter::AJellyGamePaperCharacter()
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
 	
-	GetCharacterMovement()->JumpZVelocity = 900.0f;
+	GetCharacterMovement()->JumpZVelocity = 1300.0f;
 	GetCharacterMovement()->AirControl = 0.35f;
 	GetCharacterMovement()->MaxWalkSpeed = 500.0f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.0f;
