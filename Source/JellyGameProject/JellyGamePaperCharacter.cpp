@@ -36,6 +36,7 @@ AJellyGamePaperCharacter::AJellyGamePaperCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	GetCapsuleComponent()->SetCapsuleSize(70.0f, 80.0f);
 	Health = 10;
 }
 
@@ -55,7 +56,8 @@ void AJellyGamePaperCharacter::Tick(float DeltaTime)
 
 void AJellyGamePaperCharacter::DamageRecived(float DamagePoint)
 {
-
+	UE_LOG(LogTemp, Warning, TEXT("Damage function called"));
+	UE_LOG(LogTemp, Warning, TEXT("Damage amount: %f"), DamagePoint);
 }
 
 void AJellyGamePaperCharacter::MoveRight(float Value)

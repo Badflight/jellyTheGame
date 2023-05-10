@@ -19,7 +19,6 @@ AEnemyAIController::AEnemyAIController(const FObjectInitializer& objectInitializ
 void AEnemyAIController::OnPossess(APawn* const pawn)
 {
 	Super::OnPossess(pawn);
-	//CHANGE SALT KING TO AN ENEMY BASE
 	AEnemyBase* Char = Cast<AEnemyBase>(pawn);
 
 	if (Char != nullptr && Char->TreeAsset != nullptr)
