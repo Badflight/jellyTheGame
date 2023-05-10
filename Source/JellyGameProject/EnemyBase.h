@@ -19,10 +19,8 @@ class JELLYGAMEPROJECT_API AEnemyBase : public APawn
 public:
 	// Sets default values for this pawn's properties
 	AEnemyBase();
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UBehaviorTree* TreeAsset;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* StaticMeshComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

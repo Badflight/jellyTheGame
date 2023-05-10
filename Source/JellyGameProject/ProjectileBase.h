@@ -27,8 +27,6 @@ public:
 		UPaperFlipbookComponent* ProjectileSprite;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UProjectileMovementComponent* ProjectileMovement;
-	UFUNCTION()
-		virtual void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	
 
@@ -42,7 +40,5 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void FireInDirection(const FVector& Direction);
-	
 
-	
 };
