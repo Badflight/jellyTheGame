@@ -40,31 +40,46 @@ void ABlendTriggerVolume::Tick(float DeltaTime)
 }
 void ABlendTriggerVolume::NotifyActorBeginOverlap(AActor* OtherActor)
 {
-	if (AJellyGamePaperCharacter* PlayerCheck = Cast<AJellyGamePaperCharacter>(OtherActor))
+	//if (AJellyGamePaperCharacter* PlayerCheck = Cast<AJellyGamePaperCharacter>(OtherActor))
+	//{
+	//	if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
+	//	{
+	//		PlayerCharacterController->SetViewTargetWithBlend(CustomCameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
+
+	//		//Only works with one camera actor
+	//		/*TArray<AActor*> FoundActors;
+	//		UGameplayStatics::GetAllActorsOfClass(GetWorld(), CameraToFind, FoundActors);
+	//		PlayerCharacterController->SetViewTargetWithBlend(FoundActors[0], CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);*/
+
+	//		//PlayerCharacterController->SetViewTargetWithBlend(CameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
+	//		
+	//	};
+	//};
+
+	if (AJellyGameProjectCharacter* PlayerCheck2 = Cast<AJellyGameProjectCharacter>(OtherActor))
 	{
-		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
+		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck2->GetController()))
 		{
 			PlayerCharacterController->SetViewTargetWithBlend(CustomCameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
-
-			//Only works with one camera actor
-			/*TArray<AActor*> FoundActors;
-			UGameplayStatics::GetAllActorsOfClass(GetWorld(), CameraToFind, FoundActors);
-			PlayerCharacterController->SetViewTargetWithBlend(FoundActors[0], CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);*/
-
-			//PlayerCharacterController->SetViewTargetWithBlend(CameraToFind, CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
-			
-		};
-	};
+		}
+	}
 }
 
 void ABlendTriggerVolume::NotifyActorEndOverlap(AActor* OtherActor)
 {
-	if (AJellyGamePaperCharacter* PlayerCheck = Cast<AJellyGamePaperCharacter>(OtherActor))
+	/*if (AJellyGamePaperCharacter* PlayerCheck = Cast<AJellyGamePaperCharacter>(OtherActor))
 	{
 		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck->GetController()))
 		{
 			PlayerCharacterController->SetViewTargetWithBlend(PlayerCharacterController->GetPawn(), CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
-			//comment test
+			
+		}
+	}*/
+	if (AJellyGameProjectCharacter* PlayerCheck2 = Cast<AJellyGameProjectCharacter>(OtherActor)) {
+		if (APlayerController* PlayerCharacterController = Cast<APlayerController>(PlayerCheck2->GetController()))
+		{
+			PlayerCharacterController->SetViewTargetWithBlend(PlayerCharacterController->GetPawn(), CameraBlendTime, EViewTargetBlendFunction::VTBlend_Linear);
+
 		}
 	}
 }
