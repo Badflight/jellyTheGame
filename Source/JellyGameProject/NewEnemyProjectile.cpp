@@ -54,7 +54,7 @@ void ANewEnemyProjectile::Tick(float DeltaTime)
 
 void ANewEnemyProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if (OtherActor&&(OtherActor != this)) {
+	/*if (OtherActor&&(OtherActor != this)) {
 		AJellyGamePaperCharacter* playerRef = Cast<AJellyGamePaperCharacter>(OtherActor);
 		if (playerRef) {
 			playerRef->DamageRecived(DamageAmount);
@@ -62,6 +62,6 @@ void ANewEnemyProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* Other
 		Destroy();
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Target hit"))
-	Destroy();
+	Destroy();*/
 }
 
