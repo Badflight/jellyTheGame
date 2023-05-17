@@ -44,6 +44,10 @@ public:
 		class USpringArmComponent* CameraBoom;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera, meta = (AllowedPrivateAccess = "true"))
 		class UCameraComponent* FollowCamera;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int Health;
+	UFUNCTION(BlueprintCallable)
+		void DamageRecived(float DamagePoint);
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 };

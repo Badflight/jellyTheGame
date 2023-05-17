@@ -15,7 +15,7 @@ AEnemyBase::AEnemyBase()
 
 
 	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static mesh"));
-	StaticMeshComp->SetupAttachment(RootComponent);
+	StaticMeshComp->SetupAttachment(CapsuleComponent);
 	
 	PawnMovementComp = CreateDefaultSubobject<UCustomPawnMovementSystem>(TEXT("Pawn Movement"));
 	PawnMovementComp->UpdatedComponent;
@@ -28,7 +28,7 @@ AEnemyBase::AEnemyBase()
 void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	//LeapAttack();
 }
 
 // Called every frame
@@ -38,7 +38,7 @@ void AEnemyBase::Tick(float DeltaTime)
 
 }
 
-void AEnemyBase::Shoot()
+void AEnemyBase::LeapAttack()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Enemy base function called"))
 }

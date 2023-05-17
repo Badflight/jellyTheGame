@@ -19,8 +19,10 @@ class JELLYGAMEPROJECT_API AEnemyBase : public APawn
 public:
 	// Sets default values for this pawn's properties
 	AEnemyBase();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UBehaviorTree* TreeAsset;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* StaticMeshComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -38,7 +40,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
-		void Shoot();
+		void LeapAttack();
 
 	// Called to bind functionality to input
 	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
